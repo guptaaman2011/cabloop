@@ -1,0 +1,220 @@
+<header>
+	<style type="text/css">
+		.color {
+			color:#000000;
+			background: #e7eae5;
+		}
+	</style>
+
+	<div class="color">
+		<marquee><p style="font-family: 'Work Sans'; font-size: 12pt;margin-top: 0.5rem;margin-bottom: 0.5rem">Some offers will be shown here!!!</p></marquee>
+	</div>
+
+	<nav [ngClass]="{'stick': shouldStick}" id="nav" class="navbar sticky  navbar-expand-lg navbar-dark blue darken-3 nopad" style="z-index:100;">
+		<div class="container">
+			<a class="navbar-brand" href="./"><img src="../../assets/img/logo/logo.png" alt="Logo"></a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+				  aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Links -->
+				<ul class="navbar-nav ml-auto navbar-right">
+					<li class="nav-item">
+						<a class="nav-link" [routerLink]="['']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">Home <span class="sr-only">(current)</span></a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="#">Services</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" [routerLink]="['/user-profile']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">My Account</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="#">Contact Us</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="btn btn-md btn-yellow sbu"  style="line-height:1.00;margin:12px;margin-top: 15px;" (click)="showSignUp()">Sign in</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<body>
+	<div class="loader" id="loading" *ngIf="loadingg">
+		<img src="../../assets/img/loader/252.gif" id="loading-content">
+	</div>
+
+	<!-- Start your project here-->
+	<section class="contain banner">
+		<div class="row">
+			<div class="container">
+				<div class="col-sm-10 offset-sm-1">
+					<div class="col align-self-center">
+						<div class="card view overlay hm-white-slight margin" style="padding-top:0px;padding-bottom:0px; top:18px">
+							<div class="row" *ngIf="showSignIn">
+								<div class="col-sm-6" style="padding:0 20px 0;">
+									<div class="row padlr">
+										<div class="col-sm-12" style="padding-top:12px;">
+											<h4 class="card-title indigo-text text-left"><strong style="font-weight:700;">Create Account</strong></h4>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="input-group">
+														<span class="input-group-addon colorfacebook chh"><i class="fa fa-facebook" aria-hidden="true"></i></span>
+														<input  type="text" name=" id_number"  value="Facebook" disabled="true" class="form-control colorfacebook soc">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="input-group">
+														<span class="input-group-addon colorgoogle chh"><i class="fa fa-google-plus" aria-hidden="true"></i></span>
+														<input  type="text" name=" id_number"  value="Google" disabled="true" class="form-control colorgoogle soc">
+													</div>
+												</div>
+											</div>
+											<form [formGroup]="userSignUpForm" >
+												<div *ngIf="error">
+													<p class="error">  {{ emessage1 }} </p>
+													<p class="error">  {{ emessage2 }} </p>
+													<p class="error">  {{ emessage3 }} </p>
+													<p class="error">  {{ emessage4 }} </p>
+													<p class="error">  {{ emessage5 }} </p>
+												</div>
+
+												<div class="input-group input">
+													<span class="input-group-addon" style="width:24%;padding:0px;font-size: 4px;">
+													<select class="form-control sele" id="country" style="background: #ffffff!important;border:none;position: relative;bottom: 1.5px;">
+													<option style="padding-left: 0.8rem;" value="+33">+33</option>
+													<option value="+91">+91</option>
+													<option value="+44">+44</option>
+													</select></span>
+													<input  type="text" name=" id_number" id="phone_no" placeholder="Phone No" class="back noborder_right iiitem"  formControlName="mobileNumber" #mobile>
+													<span class="input-group-addon input colorasterisk noborder ssss"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+												</div>
+
+												<div class="form-inline">
+													<div class="form-group">
+														<input type="checkbox" id="checkbox11">
+														<label for="checkbox11">&nbsp;Individual Car Owner</label>
+													</div>
+													<div class="form-group">
+														<input type="checkbox" class="filled-in noborder_right" id="checkbox22">
+														<label for="checkbox22">&nbsp;Travel Agent</label>
+													</div>
+												</div>
+												
+												<p>&nbsp;</p>
+
+												<div class="input-group form-sm">
+													<input type="text"  placeholder="Full Name" class="form-control noborder_right input iitem" style="background:  #ECEBEF!important;" formControlName="fullName" #name>
+													<span class="input-group-addon colorasterisk noborder_left sss"><i class="fa fa-asterisk noborder" aria-hidden="true"></i></span>
+												</div>
+
+												<div class="input-group form-sm">
+													<input type="text"  placeholder="Alias Name" class="form-control noborder_right input iitem" formControlName="alias" style="background:  #ECEBEF!important;" #alias>
+												</div>
+
+												<div class="input-group">
+													<input type="email"  placeholder="Email id" class="form-control input noborder_right iitem" formControlName="emailId" style="background:  #ECEBEF!important;" #email>
+													<span class="input-group-addon colorasterisk noborder_left esss"><i class="fa fa-asterisk noborder" aria-hidden="true"></i></span>
+												</div>
+
+												<div class="input-group">
+													<input type="password"  placeholder="Password" class="form-control input noborder_right iitem" formControlName="password" style="background:  #ECEBEF!important;" #password>
+													<span class="input-group-addon colorasterisk noborder_left psss"><i class="fa fa-asterisk noborder" aria-hidden="true"></i></span>
+												</div>
+
+												<button type="button" class="btn btn-yellow btn-md btn-block sbu" (click)="onSignUp(mobile.value,name.value,alias.value,email.value,password.value)">Sign Up</button>
+											</form>
+											<p class="text-center black-text" style="margin-top:10px;font-size: 10px;">By clicking Sign up you accept<a href="#" class="blue-text"> Terms and conditions</a></p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-6" style="background:#FFB902;padding:0 20px 0;">
+									<div class="row">
+										<div class="col-sm-12" style="padding-top:12px;">
+											<h4 class="card-title white-text text-left"><strong style="font-weight:700;">Login</strong></h4>
+
+											<div class="row" style="padding-right: 10px;">
+												<div class="col-sm-6">
+													<div class="input-group">
+														<span class="input-group-addon colorfacebook chh">  <i class="fa fa-facebook" aria-hidden="true"></i> </span>
+														<input  type="text" name="id_number"  value="Facebook" disabled="true" class="form-control colorfacebook soc">
+													</div>
+												</div>
+
+												<div class="col-sm-6">
+													<div class="input-group">
+														<span class="input-group-addon colorgoogle chh"><i class="fa fa-google-plus" aria-hidden="true"></i></span>
+														<input  type="text" name="id_number"  value="Google" disabled="true" class="form-control colorgoogle soc">
+													</div>
+												</div>
+											</div>
+
+											<form [formGroup]="userSignInForm" (ngSubmit)="onLogIn()">											
+												<div class="md-form form-sm">
+													<input type="text"  placeholder="User Name" formControlName="userName" #userName class="form-control noborder_right lform" style="background:  #ECEBEF!important;" required>
+												</div>
+
+												<div class="md-form form-sm">
+													<input type="password"  placeholder="Password" formControlName="password" #passsword class="form-control lform" required style="background:  #ECEBEF!important;">
+												</div>
+
+												<button type="button" class="btn btn-blue btn-md btn-block sbu" style="" (click)="onLogIn(userName.value,passsword.value)">Login</button>
+												<p>&nbsp;</p>
+											</form>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!--Card-->
+			</div>
+		</div>
+	</section>
+
+	<div class="modal fade" id="services" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-notify modal-info modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 0px;padding-top: 0px;">
+					<p class="heading lead fadeIn animated" align="center"></p>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 5px;">
+						<span aria-hidden="true" class="black-text-text">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="padding-top: 0px;">
+					<div class="text-center">
+						<p class="text-left"><b>Enter the OTP</b></p>
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="text-left black-text" style="line-height: 1.2;">To verify this Phone Number, Please enter the OTP that has been sent to your<br> Mobile Number <span id="no"></span></p>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="md-form form-sm">
+											<input type="text" id="form1" placeholder="Type OTP here" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-sm-2">
+										<button type="button" class="btn btn-primary btn-sm fa-plus-circle-left pull-left">Confirm</button>
+									</div>
+
+									<div class="col-sm-3">
+										<button type="button" class="btn btn-amber btn-sm fa-plus-circle-left pull-left">Resend OTP</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
